@@ -7,8 +7,9 @@
 
 namespace CloudCatch\InstagramBlock;
 
-use League\OAuth2\Client\Provider\Instagram;
-
+/**
+ * Handles communication with Instagram API
+ */
 class InstagramAdapter {
 
 	/**
@@ -43,9 +44,14 @@ class InstagramAdapter {
 		return self::$instance;
 	}
 
+	/**
+	 * Instantiate new provider.
+	 *
+	 * @return Provider
+	 */
 	public function getProvider() {
 		if ( null === self::$provider ) {
-			self::$provider = new Instagram(
+			self::$provider = new Provider(
 				array(
 					'clientId'     => get_option( 'cc_instagram_client_id', '' ),
 					'clientSecret' => get_option( 'cc_instagram_client_secret', '' ),
@@ -58,6 +64,11 @@ class InstagramAdapter {
 		return self::$provider;
 	}
 
+	/**
+	 * Gets access token and updates if needed.
+	 *
+	 * @return WP_Error|string
+	 */
 	public function getAccessToken() {
 		$tokens = get_option( 'cc_instagram_token' );
 
@@ -82,6 +93,12 @@ class InstagramAdapter {
 		return isset( $tokens['access_token'] ) ? $tokens['access_token'] : '';
 	}
 
+	/**
+	 * Query Instagram API for recent posts.
+	 *
+	 * @param array $args Arguments to pass to Instagram API.
+	 * @return array|WP_Error
+	 */
 	public function getMedia( $args = array() ) {
 		try {
 			$request = $this->getProvider()->getAuthenticatedRequest(

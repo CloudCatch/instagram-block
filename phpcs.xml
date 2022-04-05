@@ -25,11 +25,20 @@
 	</rule>
 	<rule ref="WordPress.NamingConventions.ValidFunctionName">
 		<exclude-pattern>src/InstagramAdapter.php</exclude-pattern>
+		<exclude-pattern>src/Provider.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>src/InstagramAdapter.php</exclude-pattern>
+		<exclude-pattern>src/Provider.php</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>src/InstagramAdapter.php</exclude-pattern>
+		<exclude-pattern>src/Provider.php</exclude-pattern>
 	</rule>
 	<!-- Verify that no WP functions are used which are deprecated or removed. -->
 	<rule ref="WordPress.WP.DeprecatedFunctions">
 		<properties>
-			<property name="minimum_supported_version" value="5.0"/>
+			<property name="minimum_supported_version" value="5.8"/>
 		</properties>
 	</rule>
 	<!-- Check all globals have the expected prefix. -->

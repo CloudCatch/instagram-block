@@ -1,9 +1,26 @@
 {
 	"name": "cloudcatch/instagram-block",
 	"type": "wordpress-plugin",
+	"description": "Instagram Block for WordPress",
+	"keywords": [
+		"WordPress",
+		"block editor",
+		"block",
+		"instagram"
+	],
+	"authors": [{
+		"name": "David Jensen",
+		"homepage": "https://cloudcatch.io",
+		"role": "Developer"
+	}],
+	"support": {
+		"issues": "https://github.com/CloudCatch/instagram-block/issues",
+		"source": "https://github.com/CloudCatch/instagram-block"
+	},
 	"require": {
 		"league/oauth2-client": "^2.6",
-		"league/oauth2-instagram": "^3.1"
+		"league/oauth2-instagram": "^3.1",
+		"php": ">=7.0"
 	},
 	"require-dev": {
 		"brain/monkey": "^2.2",
@@ -12,7 +29,6 @@
 		"phpunit/phpunit": "~5.7.9",
 		"squizlabs/php_codesniffer": "^3.6.0",
 		"wp-coding-standards/wpcs": "^2.3.0",
-		"wp-phpunit/wp-phpunit": "^5.7.2",
 		"php-stubs/woocommerce-stubs": "^5.3",
 		"automattic/vipwpcs": "^2.3",
 		"php-stubs/wordpress-stubs": "^5.9"
@@ -22,9 +38,12 @@
 			"CloudCatch\\InstagramBlock\\": "src/"
 		}
 	},
-	"license": "GPL2+",
-	"authors": [{
-		"name": "David Jensen",
-		"email": "david@dkjensen.com"
-	}]
+	"config": {
+		"preferred-install": {
+			"*": "dist"
+		},
+		"sort-order": true
+	},
+	"prefer-stable": true,
+	"license": "GPL2+"
 }

@@ -52,3 +52,27 @@ function instagram_block_load_textdomain() {
 	load_plugin_textdomain( 'cc-instagram', false, CLOUDCATCH_INSTAGRAM_BLOCK_DIR . 'languages' );
 }
 add_action( 'init', 'instagram_block_load_textdomain' );
+
+/**
+ * Setup data on activation.
+ *
+ * @return void
+ */
+function instagram_block_install() {
+	update_option( 'cc_instagram_uuid', bin2hex( random_bytes( 11 ) ) );
+}
+register_activation_hook( __FILE__, 'instagram_block_install' );
+
+/**
+ * Remove all data on deactivation.
+ *
+ * @return void
+ */
+function instagram_block_uninstall() {
+	delete_transient( 'cc_instagram_media' );
+	delete_option( 'cc_instagram_uuid' );
+	delete_option( 'cc_instagram_auth_state' );
+	delete_option( 'cc_instagram_token' );
+	delete_option( 'cc_instagram_user' );
+}
+register_deactivation_hook( __FILE__, 'instagram_block_uninstall' );

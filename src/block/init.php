@@ -72,7 +72,14 @@ function instagram_block_cgb_block_assets() {
 }
 add_action( 'init', 'instagram_block_cgb_block_assets' );
 
-function instagram_block_render( $attributes, $content, $block ) {
+/**
+ * Server side render block function.
+ *
+ * @param array  $attributes Block attributes.
+ * @param string $content Block content. Default empty string.
+ * @return string
+ */
+function instagram_block_render( $attributes, $content ) {
 	$media = instagram_block_get_media();
 	$user  = instagram_block_get_user();
 
@@ -156,7 +163,7 @@ function instagram_block_render( $attributes, $content, $block ) {
 
 				<div class="wp-block-cloudcatch-instagram__content-item">
 					<?php if ( 'VIDEO' === $media['media_type'] ) : ?>
-					
+
 					<div class="wp-block-cloudcatch-instagram__content-video">
 						<video controls>
 							<source src="<?php echo esc_url( $media['media_url'] ); ?>" type="video/mp4" />
@@ -182,7 +189,7 @@ function instagram_block_render( $attributes, $content, $block ) {
 	</div>
 
 	<?php
-	$content = apply_filters( 'instagram_block_render', ob_get_clean(), $attributes, $content, $block );
+	$content = apply_filters( 'instagram_block_render', ob_get_clean(), $attributes, $content );
 
 	return $content;
 }
